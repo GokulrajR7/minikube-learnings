@@ -2,15 +2,11 @@
 *.log
 .env
 
-# Node (existing)
+# Node
 node_modules/
 
 # VS Code
 .vscode/
-
-# ----------------------------
-# DevOps / Kubernetes specific
-# ----------------------------
 
 # Binaries
 *.exe
@@ -20,15 +16,15 @@ node_modules/
 *.tar
 *.tar.gz
 
-# Downloaded tools / folders
+# Ignore downloaded tools only
 prometheus-*
 helm-*
 
-# OS files
+# OS
 .DS_Store
 Thumbs.db
 
-# Secrets (VERY IMPORTANT)
-secret.yaml
+# Secrets
+secret*.yaml
 *.key
 *.crt
