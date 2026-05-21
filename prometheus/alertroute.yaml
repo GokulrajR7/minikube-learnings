@@ -1,0 +1,21 @@
+# receivers:
+# - name: workflow-webhook
+#   webhook_configs:
+#   - url: https://hooks.slack.com/triggers/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
+#     send_resolved: true
+#     http_config:
+#       headers:
+#         Content-Type: application/json
+#     body: |
+#       {
+#         "summary": "{{ .CommonAnnotations.summary }}",
+#         "description": "{{ .CommonAnnotations.description }}",
+#         "severity": "{{ .CommonLabels.severity }}",
+#         "alertname": "{{ .CommonLabels.alertname }}"
+#       }
+
+# receivers:
+# - name: 'jsm-opsgenie'
+#   opsgenie_configs:
+#   - api_key: '0f93c953-84e3-41f4-8cc1-c1627cf34a0e'
+#     priority: 'P1'

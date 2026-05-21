@@ -1,0 +1,42 @@
+# apiVersion: monitoring.coreos.com/v1
+# kind: PrometheusRule
+# metadata:
+#   name: pod-created-alert
+#   namespace: monitoring
+#   labels:
+#     release: monitoring
+# spec:
+#   groups:
+#   - name: pod-alerts
+#     rules:
+#     - alert: PodCreated
+#       expr: changes(kube_pod_created[1m]) > 0
+#       for: 30s
+#       labels:
+#         severity: critical
+#       annotations:
+#         summary: "New pod created"
+#         description: "Pod {{ $labels.pod }} created in namespace {{ $labels.namespace }}"
+
+
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: dev-alert-rule
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+  - name: Dev-alerts
+    rules:
+    - alert: DevAlertAlwaysFiring
+      expr: vector(1)
+      for: 0s
+      labels:
+        severity: critical
+        namespace: monitoring
+        team: dev
+      annotations:
+        summary: "dev Test alert"
+        description: "dev firing alert"

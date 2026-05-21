@@ -1,0 +1,76 @@
+# apiVersion: monitoring.coreos.com/v1alpha1
+# kind: AlertmanagerConfig
+# metadata:
+#   name: jsm-opsgenie
+#   namespace: monitoring
+#   labels:
+#     release: monitoring
+
+# spec:
+#   route:
+#     receiver: jsm-opsgenie
+
+#   receivers:
+#   - name: jsm-opsgenie
+#     opsgenieConfigs:
+#     - apiKey:
+#         name: opsgenie-secret
+#         key: api-key
+#       priority: P1
+
+
+
+
+
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: jsm-opsgenie
+  namespace: monitoring
+  labels:
+    release: monitoring
+
+spec:
+  route:
+    receiver: devops
+
+    routes:
+    - matchers:
+      - name: team
+        value: dev
+        matchType: "="
+      receiver: dev
+
+    - matchers:
+      - name: team
+        value: dba
+        matchType: "="
+      receiver: dba
+
+    - matchers:
+      - name: team
+        value: devops
+        matchType: "="
+      receiver: devops
+
+  receivers:
+  - name: dev
+    opsgenieConfigs:
+    - apiKey:
+        name: dev-opsgenie-secret
+        key: api-key
+      priority: P1
+
+  - name: dba
+    opsgenieConfigs:
+    - apiKey:
+        name: dba-opsgenie-secret
+        key: api-key
+      priority: P1
+
+  - name: devops
+    opsgenieConfigs:
+    - apiKey:
+        name: opsgenie-secret
+        key: api-key
+      priority: P1

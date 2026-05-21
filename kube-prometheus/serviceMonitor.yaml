@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: sample-app
+  namespace: monitoring
+  labels:
+    release: monitoring   #  must match Helm release
+spec:
+  selector:
+    matchLabels:
+      app: sample-app     #  matches Service label
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  endpoints:
+  - port: http            #  matches Service port name
+    path: /metrics
+    interval: 15s

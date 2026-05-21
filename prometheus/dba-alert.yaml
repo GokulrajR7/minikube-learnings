@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: dba-alert-rule
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+  - name: dba-alerts
+    rules:
+    - alert: DBATestAlert
+      expr: vector(1)
+      for: 0s
+      labels:
+        severity: critical
+        namespace: monitoring
+        team: dba
+      annotations:
+        summary: "DBA Test Alert"
+        description: "Always firing alert for DBA team"

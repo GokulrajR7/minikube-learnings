@@ -1,0 +1,42 @@
+# apiVersion: monitoring.coreos.com/v1
+# kind: PrometheusRule
+# metadata:
+#   name: final-test-alert
+#   namespace: monitoring
+#   labels:
+#     release: monitoring
+# spec:
+#   groups:
+#   - name: test-alerts
+#     rules:
+#     - alert: FinalTestAlert2
+#       expr: vector(1)
+#       for: 0s
+#       labels:
+#         severity: critical
+#         namespace: monitoring
+#       annotations:
+#         summary: "Devops test alert 2"
+#         description: "Devops test alert firing"
+
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: devops-alert-rule
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+  - name: devops-alerts
+    rules:
+    - alert: DevOpsTestAlert
+      expr: vector(1)
+      for: 0s
+      labels:
+        severity: critical
+        namespace: monitoring
+        team: devops
+      annotations:
+        summary: "DevOps Test Alert"
+        description: "Always firing alert for DevOps team"
